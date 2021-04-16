@@ -1,17 +1,14 @@
 <template>
-    
+  <v-container>
+  </v-container>
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
+  export default {
+    name: 'Endecerco',
 
-export default defineComponent({
-    setup() {
-        
-    },
-})
+    data: () => ({
+     
+    }),
+  }
 </script>
-
-<style scoped>
-
-</style>

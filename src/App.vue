@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TopsideBar></TopsideBar>
+    <TopsideBar :userIsLoged="false"></TopsideBar>
     <h1>Guia clientes</h1>
     <div>
       <Clientes></Clientes>

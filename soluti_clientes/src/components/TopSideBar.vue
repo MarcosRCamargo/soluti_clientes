@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">Sis Soluti</b-navbar-brand>
+      <b-navbar-brand href="/home">Sis Soluti</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -15,10 +15,7 @@
             ><b-icon icon="telephone" aria-hidden="true"></b-icon>
             Contato</b-nav-item
           >
-          <b-nav-item href="#" v-if="userIsLoged === true"
-            ><b-icon icon="award-fill" aria-hidden="true"></b-icon>Meus
-            Certificados</b-nav-item
-          >
+          <b-nav-item><router-link to="/certificado"><b-icon icon="award-fill"></b-icon>Meus Certificados </router-link></b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -33,20 +30,18 @@
               <template #button-content>
                 <em><b-icon icon="person-fill"></b-icon> Usuário</em>
               </template>
-              <b-dropdown-item href="#"
-                ><b-icon icon="gear-fill" aria-hidden="true"></b-icon>
-                Profile</b-dropdown-item
-              >
-              <b-dropdown-item href="#"
+              <!-- <b-dropdown-item href="#"> Profile</b-dropdown-item> -->
+              <b-dropdown-item href="#"><router-link to="/cliente"><b-icon icon="gear-fill" aria-hidden="true"></b-icon>Profile </router-link></b-dropdown-item>
+              <b-dropdown-item 
                 ><b-icon icon="power" aria-hidden="true"></b-icon> Sign
                 Out</b-dropdown-item
               >
             </b-nav-item-dropdown>
           </div>
           <div v-else>
-            
-            <b-nav-item right>
-              <router-link to="/cadastrar" class="color-wite"><b-icon icon="person"></b-icon>Cadastrar</router-link>
+            <b-nav-item right href="#">
+              <router-link to="/cadastrar"><b-icon icon="person"></b-icon>Cadastrar </router-link>
+              <router-link to="/entrar"><b-icon icon="unlock"></b-icon>Entrar</router-link>
             </b-nav-item>
           </div>
         </b-navbar-nav>

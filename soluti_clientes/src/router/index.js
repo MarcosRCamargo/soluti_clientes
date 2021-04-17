@@ -24,6 +24,21 @@ const routes = [
     path: '/cadastrar',
     name: 'Cadastrar',
     component: () => import(/* webpackChunkName: "about" */ '../views/CadastarCliente.vue')
+  },
+  {
+    path: '/entrar',
+    name: 'Entrar',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+  },
+  {
+    path: '/certificado',
+    name: 'Certificado',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Certificado.vue')
+  },
+  {
+    path: '/cliente',
+    name: 'Cliente',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Cliente.vue')
   }
 ]
 

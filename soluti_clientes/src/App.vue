@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <TopSideBar :userIsLoged="true"></TopSideBar >
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/cadastrar">Cadastrar</router-link>
-    </div> -->
+    <TopSideBar :userIsLoged="isLoged"></TopSideBar>
     <router-view/>
   </div>
 </template>
@@ -13,9 +8,16 @@
 import TopSideBar from './components/TopSideBar';
 
 export default{
+  data: () => ({
+    isLoged: true,
+  }),
+
   components:{
     TopSideBar,
-  }
+  },
+  // props:{
+  //   isLoged: false
+  // },
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="fluid p-5">
+  <div class="fluid p-5" >
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
         <b-form-input
@@ -42,7 +42,7 @@
         label="Data de Nascimento:"
         label-for="input-5"
       >
-        <b-form-datepicker
+        <b-form-datepicker placeholder="Selecione uma data"
           v-model="form.data_nasc"
           :min="min"
           :max="max"
@@ -51,32 +51,34 @@
       </b-form-group>
 
       <b-form-group id="input-group-6" label="Senha:" label-for="input-6">
-          
         <b-form-input
           id="input-6"
           type="password"
-          v-model="form.senha"
+          v-model="senha"
           required
+          
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group
+        id="input-group-7"
+        label="Confirmar Senha:"
+        label-for="input-7"
+      >
+        <b-form-input
+          @change="onDefinePassWord"
+          id="input-7"
+          type="password"
+          v-model="confirmar_senha"
+          required
+        ></b-form-input>
       </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button  block  class="pb-2" type="submit" variant="primary">Cadastrar</b-button> 
+      <b-button  block class="pb-2" type="reset" variant="danger">Cancelar</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
+    <!-- <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card> -->
   </div>
 </template>
 
@@ -97,27 +99,30 @@ export default {
       value: "",
       min: minDate,
       max: maxDate,
-      hashPassword: HashChangeEvent( senha),
       form: {
         email: "",
         name: "",
         cpf: "",
         telephone: "",
         data_nasc: Date,
-        senha: hashPassword,
-        checked: [],
+        hash_senha: String,
       },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn",
-      ],
       show: true,
     };
   },
   methods: {
+    onDefinePassWord() {
+      if (this.senha === this.confirmar_senha) {
+        const encryptedPass = this.CryptoJS.MD5(this.senha).toString();
+        this.form.hash_senha = encryptedPass;
+      }
+      else{
+          alert("As senhas estão divergentes.");
+          this.form.hash_senha = "";
+      }
+
+     
+    },
     onSubmit(event) {
       event.preventDefault();
       alert(JSON.stringify(this.form));
@@ -127,8 +132,10 @@ export default {
       // Reset our form values
       this.form.email = "";
       this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
+        this.cpf= "",
+        this.telephone= "",
+        this.data_nasc= "",
+        this.hash_senha= "",
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

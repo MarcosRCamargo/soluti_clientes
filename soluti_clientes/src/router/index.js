@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import VueCryptojs from 'vue-cryptojs'
 
+Vue.use(VueCryptojs)
 Vue.use(VueRouter)
 
 const routes = [
